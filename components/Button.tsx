@@ -2,17 +2,18 @@ import { Pressable, StyleSheet, PressableProps } from 'react-native';
 import { InterText } from './StyledText';
 import Colors from '../constants/Colors';
 
-export const Button = (props: PressableProps & { label: string }) => {
-  const { label, ...restProps } = props;
+type ButtonProps = PressableProps & { label: string };
+
+export const Button = ({ label, ...props }: ButtonProps) => {
   return (
     <Pressable
-      {...restProps}
+      {...props}
       style={({ pressed }) => [
-        typeof restProps.style === 'function'
-          ? restProps.style({ pressed })
-          : restProps.style,
+        typeof props.style === 'function'
+          ? props.style({ pressed })
+          : props.style,
         styles.button,
-        restProps.disabled && styles.buttonDisabled,
+        props.disabled && styles.buttonDisabled,
       ]}
     >
       <InterText style={styles.buttonLabel}>{label}</InterText>

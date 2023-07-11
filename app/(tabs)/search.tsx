@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { Button } from '../../components/Button';
 import Colors from '../../constants/Colors';
+import { Viewer } from '../../components/Viewer';
 
 export default function SearchAnime() {
   const [text, setText] = useState<string>('');
@@ -28,6 +29,7 @@ export default function SearchAnime() {
             }}
           />
         </View>
+        <Viewer />
       </View>
     </SafeAreaView>
   );
