@@ -7,9 +7,11 @@ import { useFetchSearchAnime } from '../../utils/hooks';
 import Button from '../../components/Button';
 import Viewer from '../../components/Viewer';
 import Spinner from '../../components/Spinner';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function SearchAnime() {
-  const { data, loading } = useFetchSearchAnime();
+  const { q, page } = useLocalSearchParams<{ q?: string; page?: string }>();
+  const { data, loading } = useFetchSearchAnime(q, page);
   const [text, setText] = useState<string>('');
 
   return (

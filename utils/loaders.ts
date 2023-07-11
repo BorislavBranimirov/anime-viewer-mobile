@@ -1,6 +1,6 @@
 import { IApiAnime, IApiResponse } from './types';
 
-export const fetchTopAnime = async (page?: string | null) => {
+export const fetchTopAnime = async (page?: string) => {
   const url = new URL('https://api.jikan.moe/v4/top/anime');
   url.searchParams.append('limit', '20');
   if (page) {
@@ -11,7 +11,7 @@ export const fetchTopAnime = async (page?: string | null) => {
   return animeData;
 };
 
-export const fetchSeasonalAnime = async (page?: string | null) => {
+export const fetchSeasonalAnime = async (page?: string) => {
   const url = new URL('https://api.jikan.moe/v4/seasons/now');
   url.searchParams.append('limit', '20');
   url.searchParams.append('sfw', 'true');
@@ -24,8 +24,8 @@ export const fetchSeasonalAnime = async (page?: string | null) => {
 };
 
 export const fetchSearchAnime = async (
-  query?: string | null,
-  page?: string | null
+  query?: string,
+  page?: string
 ) => {
   const url = new URL('https://api.jikan.moe/v4/anime');
   url.searchParams.append('limit', '20');

@@ -6,9 +6,11 @@ import { useFetchTopAnime } from '../../utils/hooks';
 import InterText from '../../components/StyledText';
 import Viewer from '../../components/Viewer';
 import Spinner from '../../components/Spinner';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function TabOneScreen() {
-  const { data, loading } = useFetchTopAnime();
+  const { page } = useLocalSearchParams<{ page?: string }>();
+  const { data, loading } = useFetchTopAnime(page);
 
   return (
     <SafeAreaView style={styles.container}>

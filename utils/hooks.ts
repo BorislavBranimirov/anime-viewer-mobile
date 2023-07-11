@@ -3,8 +3,8 @@ import { IApiResponse } from './types';
 import { fetchSearchAnime, fetchSeasonalAnime, fetchTopAnime } from './loaders';
 
 const useFetch = (
-  loader: (page?: string | null) => Promise<IApiResponse>,
-  page?: string | null
+  loader: (page?: string) => Promise<IApiResponse>,
+  page?: string
 ) => {
   const [data, setData] = useState<IApiResponse>();
   const [loading, setLoading] = useState(false);
@@ -18,22 +18,22 @@ const useFetch = (
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   return { data, loading };
 };
 
-export const useFetchTopAnime = (page?: string | null) => {
+export const useFetchTopAnime = (page?: string) => {
   const { data, loading } = useFetch(fetchTopAnime, page);
   return { data, loading };
 };
 
-export const useFetchSeasonalAnime = (page?: string | null) => {
+export const useFetchSeasonalAnime = (page?: string) => {
   const { data, loading } = useFetch(fetchSeasonalAnime, page);
   return { data, loading };
 };
 
-export const useFetchSearchAnime = (page?: string | null) => {
+export const useFetchSearchAnime = (query?: string, page?: string) => {
   const { data, loading } = useFetch(fetchSearchAnime, page);
   return { data, loading };
 };

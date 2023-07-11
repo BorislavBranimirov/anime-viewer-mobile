@@ -6,9 +6,11 @@ import { useFetchSeasonalAnime } from '../../utils/hooks';
 import InterText from '../../components/StyledText';
 import Viewer from '../../components/Viewer';
 import Spinner from '../../components/Spinner';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function SeasonalAnime() {
-  const { data, loading } = useFetchSeasonalAnime();
+  const { page } = useLocalSearchParams<{ page?: string }>();
+  const { data, loading } = useFetchSeasonalAnime(page);
 
   return (
     <SafeAreaView style={styles.container}>
