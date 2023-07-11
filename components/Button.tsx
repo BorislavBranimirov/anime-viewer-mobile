@@ -1,10 +1,10 @@
 import { Pressable, StyleSheet, PressableProps } from 'react-native';
-import { InterText } from './StyledText';
 import Colors from '../constants/Colors';
+import InterText from './StyledText';
 
 type ButtonProps = PressableProps & { label: string };
 
-export const Button = ({ label, ...props }: ButtonProps) => {
+const Button = ({ label, ...props }: ButtonProps) => {
   return (
     <Pressable
       {...props}
@@ -39,3 +39,5 @@ const styles = StyleSheet.create({
     color: Colors.text,
   },
 });
+
+export default Button;

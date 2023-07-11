@@ -1,7 +1,11 @@
 import { StyleSheet, View } from 'react-native';
-import { Button } from './Button';
+import { IApiResponse } from '../utils/types';
+import Button from './Button';
 
-export const Viewer = () => {
+const Viewer = ({ data }: { data: IApiResponse }) => {
+  const { data: animeList, pagination } = data;
+  const { current_page, has_next_page } = pagination;
+
   return (
     <>
       <View style={styles.navigationWrapper}>
@@ -19,3 +23,5 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+export default Viewer;

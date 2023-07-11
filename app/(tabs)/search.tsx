@@ -2,11 +2,14 @@ import { StyleSheet, TextInput, View } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
-import { Button } from '../../components/Button';
 import Colors from '../../constants/Colors';
-import { Viewer } from '../../components/Viewer';
+import { useFetchSearchAnime } from '../../utils/hooks';
+import Button from '../../components/Button';
+import Viewer from '../../components/Viewer';
+import Spinner from '../../components/Spinner';
 
 export default function SearchAnime() {
+  const { data, loading } = useFetchSearchAnime();
   const [text, setText] = useState<string>('');
 
   return (
@@ -29,7 +32,7 @@ export default function SearchAnime() {
             }}
           />
         </View>
-        <Viewer />
+        {!data || loading ? <Spinner /> : <Viewer data={data} />}
       </View>
     </SafeAreaView>
   );
@@ -41,6 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   wrapper: {
+    flex: 1,
     width: '80%',
     marginHorizontal: 'auto',
   },

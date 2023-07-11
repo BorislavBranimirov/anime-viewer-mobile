@@ -1,6 +1,6 @@
 import { Text, TextProps } from 'react-native';
 
-export const InterText = (props: TextProps) => {
+const InterText = (props: TextProps) => {
   return (
     <Text
       {...props}
@@ -8,3 +8,5 @@ export const InterText = (props: TextProps) => {
     />
   );
 };
+
+export default InterText;
