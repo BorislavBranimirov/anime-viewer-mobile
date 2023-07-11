@@ -19,6 +19,7 @@ export default function SearchAnime() {
               setText(newText);
             }}
             value={text}
+            placeholderTextColor="darkgray"
           />
           <Button
             label="Search"
@@ -42,7 +43,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   inputWrapper: {
-    flex: 1,
     flexDirection: 'row',
     marginVertical: 20,
     width: '100%',
@@ -51,7 +51,14 @@ const styles = StyleSheet.create({
   searchInput: {
     paddingHorizontal: 12,
     paddingVertical: 8,
-    flexGrow: 1,
+    backgroundColor: 'rgb(39,39,42)',
+    borderWidth: 1,
     borderRadius: 8,
+    borderColor: Colors.border,
+    minWidth: 0,
+    fontFamily: 'Inter_400Regular',
+    fontSize: 16,
+    lineHeight: 24,
+    color: Colors.text,
   },
 });
