@@ -7,12 +7,17 @@ import { useFetchSearchAnime } from '../../utils/hooks';
 import Button from '../../components/Button';
 import Viewer from '../../components/Viewer';
 import Spinner from '../../components/Spinner';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 
 export default function SearchAnime() {
+  const router = useRouter();
   const { q, page } = useLocalSearchParams<{ q?: string; page?: string }>();
   const { data, loading } = useFetchSearchAnime(q, page);
-  const [text, setText] = useState<string>('');
+  const [query, setQuery] = useState<string>('');
+
+  const onSubmit = () => {
+    router.setParams({ q: query, page: '1' });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,17 +27,13 @@ export default function SearchAnime() {
             style={styles.searchInput}
             placeholder="Search&#8230;"
             onChangeText={(newText) => {
-              setText(newText);
+              setQuery(newText);
             }}
-            value={text}
+            onSubmitEditing={onSubmit}
+            value={query}
             placeholderTextColor="darkgray"
           />
-          <Button
-            label="Search"
-            onPress={() => {
-              alert('searching');
-            }}
-          />
+          <Button label="Search" onPress={onSubmit} />
         </View>
         {!data || loading ? <Spinner /> : <Viewer data={data} />}
       </View>
