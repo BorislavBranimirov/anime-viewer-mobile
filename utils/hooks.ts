@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
-import { IApiResponse } from './types';
-import { fetchSearchAnime, fetchSeasonalAnime, fetchTopAnime } from './loaders';
+import { IApiAnime, IApiResponse } from './types';
+import {
+  fetchAnime,
+  fetchSearchAnime,
+  fetchSeasonalAnime,
+  fetchTopAnime,
+} from './loaders';
 
 const useGeneralFetch = (
   loader: (page?: string) => Promise<IApiResponse>,
@@ -47,6 +52,24 @@ export const useFetchSearchAnime = (query?: string, page?: string) => {
 
     fetchData();
   }, [query, page]);
+
+  return { data, loading };
+};
+
+export const useFetchAnime = (id: string) => {
+  const [data, setData] = useState<IApiAnime>();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const animeData = await fetchAnime(id);
+      setData(animeData);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [id]);
 
   return { data, loading };
 };

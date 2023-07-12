@@ -44,7 +44,6 @@ function RootLayoutNav() {
       <SafeAreaProvider>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="animes/[id]" options={{ headerShown: false }} />
         </Stack>
       </SafeAreaProvider>
     </>
