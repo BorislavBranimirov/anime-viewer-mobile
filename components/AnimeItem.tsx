@@ -24,7 +24,7 @@ const AnimeItem = ({ anime }: { anime: IApiAnime }) => {
         <View style={styles.cardBody}>
           <InterText style={styles.cardTitle}>{anime.title}</InterText>
           <View style={styles.cardScore}>
-            <AntDesign name="star" size={16} color="orange" />
+            <AntDesign name="star" size={14} color="orange" />
             <InterText>{anime.score}</InterText>
           </View>
         </View>
@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.accentSecondary,
     boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
-    color: Colors.text,
   },
   cardCover: {
     width: '100%',
@@ -86,8 +85,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 4,
-    fontSize: 16,
-    lineHeight: 20,
   },
   cardBadge: {
     width: '50%',
@@ -102,8 +99,6 @@ const styles = StyleSheet.create({
     borderRadius: 9999,
     transform: [{ translateY: 20 }],
     boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
-    fontSize: 16,
-    lineHeight: 24,
   },
 });
 

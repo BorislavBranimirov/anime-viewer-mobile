@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 28,
     fontWeight: 'bold',
-    color: Colors.text,
     textAlign: 'center',
   },
   navigationWrapper: {

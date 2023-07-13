@@ -30,12 +30,13 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     width: '80%',
+    minHeight: '100%',
     marginHorizontal: 'auto',
   },
   title: {
     fontSize: 24,
+    lineHeight: 32,
     fontWeight: 'bold',
-    color: Colors.text,
     marginVertical: 24,
   },
 });

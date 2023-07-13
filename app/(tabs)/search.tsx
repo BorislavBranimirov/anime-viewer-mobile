@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     width: '80%',
+    minHeight: '100%',
     marginHorizontal: 'auto',
   },
   inputWrapper: {
