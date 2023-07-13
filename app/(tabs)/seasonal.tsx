@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+    overflow: 'scroll',
   },
   wrapper: {
-    flex: 1,
     width: '80%',
     marginHorizontal: 'auto',
   },

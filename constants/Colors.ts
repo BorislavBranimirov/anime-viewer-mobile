@@ -4,4 +4,5 @@ export default {
   border: 'rgb(63,63,70)',
   accent: 'rgb(88,28,135)',
   accentDisabled: 'rgba(88,28,135,0.5)',
+  accentSecondary: 'rgb(76,29,149)',
 };

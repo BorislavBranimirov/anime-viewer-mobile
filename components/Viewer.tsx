@@ -1,7 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { IApiResponse } from '../utils/types';
 import Button from './Button';
 import { useRouter } from 'expo-router';
+import InterText from './StyledText';
+import AnimeItem from './AnimeItem';
+import Colors from '../constants/Colors';
 
 const Viewer = ({ data }: { data: IApiResponse }) => {
   const router = useRouter();
@@ -10,6 +13,16 @@ const Viewer = ({ data }: { data: IApiResponse }) => {
 
   return (
     <>
+      <FlatList
+        data={animeList}
+        renderItem={({ item }) => <AnimeItem anime={item} />}
+        keyExtractor={(item) => item.mal_id.toString()}
+        ListEmptyComponent={() => (
+          <InterText style={styles.notFoundText}>
+            No entries found&#8230;
+          </InterText>
+        )}
+      />
       <View style={styles.navigationWrapper}>
         <Button
           label="Previous"
@@ -35,10 +48,18 @@ const Viewer = ({ data }: { data: IApiResponse }) => {
 };
 
 const styles = StyleSheet.create({
+  notFoundText: {
+    marginBottom: 20,
+    fontSize: 18,
+    lineHeight: 28,
+    fontWeight: 'bold',
+    color: Colors.text,
+    textAlign: 'center',
+  },
   navigationWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20,
+    marginBottom: 20,
   },
 });
 
