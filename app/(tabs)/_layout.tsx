@@ -12,10 +12,11 @@ export default function TabLayout() {
           borderTopColor: Colors.border,
         },
         tabBarInactiveTintColor: 'silver',
-        tabBarActiveTintColor: 'rgb(185, 142, 253)',
+        tabBarActiveTintColor: Colors.text,
+        tabBarInactiveBackgroundColor: Colors.background,
+        tabBarActiveBackgroundColor: Colors.accent,
         tabBarItemStyle: {
           paddingVertical: 5,
-          backgroundColor: Colors.background,
         },
         tabBarLabelPosition: 'below-icon',
         tabBarLabelStyle: { fontFamily: 'Inter_400Regular', fontSize: 16 },

@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     borderWidth: 2,
-    borderColor: Colors.accentSecondary,
+    borderColor: Colors.accent,
     boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
   },
   animeCover: {
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderBottomLeftRadius: 6,
-    backgroundColor: Colors.accentSecondary,
+    backgroundColor: Colors.accent,
     fontSize: 14,
     lineHeight: 20,
   },
