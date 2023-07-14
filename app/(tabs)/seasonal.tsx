@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '../../constants/Colors';
 import { useFetchSeasonalAnime } from '../../utils/hooks';
-import InterText from '../../components/StyledText';
 import Viewer from '../../components/Viewer';
 import Spinner from '../../components/Spinner';
 import { useLocalSearchParams } from 'expo-router';
+import PageTitle from '../../components/PageTitle';
 
 export default function SeasonalAnime() {
   const { page } = useLocalSearchParams<{ page?: string }>();
@@ -15,7 +15,7 @@ export default function SeasonalAnime() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
-        <InterText style={styles.title}>Current Anime Season</InterText>
+        <PageTitle label="Current Anime Season" />
         {!data || loading ? <Spinner /> : <Viewer data={data} />}
       </View>
     </SafeAreaView>
@@ -32,11 +32,5 @@ const styles = StyleSheet.create({
     width: '80%',
     minHeight: '100%',
     marginHorizontal: 'auto',
-  },
-  title: {
-    fontSize: 24,
-    lineHeight: 32,
-    fontWeight: 'bold',
-    marginVertical: 24,
   },
 });
