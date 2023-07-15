@@ -6,6 +6,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
+        unmountOnBlur: true,
         headerShown: false,
         tabBarStyle: {
           height: 60,
@@ -25,6 +26,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          href: '/',
           title: 'Top',
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="medal" size={24} color={color} />
@@ -34,6 +36,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="seasonal"
         options={{
+          href: '/seasonal',
           title: 'Seasonal',
           tabBarIcon: ({ color }) => (
             <FontAwesome name="calendar" size={24} color={color} />
@@ -43,6 +46,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="search"
         options={{
+          href: '/search',
           title: 'Search',
           tabBarIcon: ({ color }) => (
             <FontAwesome name="search" size={24} color={color} />
