@@ -2,11 +2,14 @@ import { Image, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import InterText from '../../components/StyledText';
 import Spinner from '../../components/Spinner';
 import Colors from '../../constants/Colors';
 import { useFetchAnime } from '../../utils/hooks';
+import ErrorBoundary from '../../components/ErrorBoundary';
+
+export { ErrorBoundary };
 
 const AnimePage = () => {
   const { id = '1' } = useLocalSearchParams<{ id?: string }>();
@@ -14,22 +17,6 @@ const AnimePage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen
-        options={{
-          title: 'Anime Page',
-          headerStyle: {
-            backgroundColor: Colors.background,
-          },
-          headerTintColor: Colors.text,
-          headerShadowVisible: false,
-          headerTitleStyle: {
-            fontFamily: 'Inter_400Regular',
-            fontSize: 20,
-            fontWeight: 'bold',
-            color: Colors.text,
-          },
-        }}
-      />
       <View style={styles.wrapper}>
         {!anime || loading ? (
           <Spinner />

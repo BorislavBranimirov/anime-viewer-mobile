@@ -4,17 +4,22 @@ import {
   Inter_400Regular,
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
-import { SplashScreen, Stack } from 'expo-router';
+import { ErrorBoundaryProps, SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ErrorBoundaryComponent from '../components/ErrorBoundary';
+import Colors from '../constants/Colors';
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+// Catch global errors
+export const ErrorBoundary = (props: ErrorBoundaryProps) => {
+  return (
+    <SafeAreaProvider>
+      <ErrorBoundaryComponent {...props} />
+    </SafeAreaProvider>
+  );
+};
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',
 };
 
@@ -25,7 +30,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -44,6 +48,23 @@ function RootLayoutNav() {
       <SafeAreaProvider>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="anime/[id]"
+            options={{
+              title: 'Anime Page',
+              headerStyle: {
+                backgroundColor: Colors.background,
+              },
+              headerTintColor: Colors.text,
+              headerShadowVisible: false,
+              headerTitleStyle: {
+                fontFamily: 'Inter_400Regular',
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: Colors.text,
+              },
+            }}
+          />
         </Stack>
       </SafeAreaProvider>
     </>
