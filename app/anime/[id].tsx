@@ -1,11 +1,12 @@
 import { Image, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AntDesign } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import InterText from '../../components/StyledText';
 import Spinner from '../../components/Spinner';
-import { Stack, useLocalSearchParams } from 'expo-router';
 import Colors from '../../constants/Colors';
 import { useFetchAnime } from '../../utils/hooks';
-import { AntDesign } from '@expo/vector-icons';
 
 const AnimePage = () => {
   const { id = '1' } = useLocalSearchParams<{ id?: string }>();
@@ -46,7 +47,11 @@ const AnimePage = () => {
                 </View>
               )}
             </View>
-            <View style={styles.animeBody}>
+            <LinearGradient
+              style={styles.animeBody}
+              colors={['rgba(9,9,11,0.2)', 'rgba(59,7,100,0.2)']}
+              locations={[0.7, 1]}
+            >
               <InterText style={styles.animeTitle}>{anime.title}</InterText>
               <View style={styles.animeTwoColumn}>
                 <InterText>#{anime.rank}</InterText>
@@ -91,7 +96,7 @@ const AnimePage = () => {
                   );
                 })}
               </View>
-            </View>
+            </LinearGradient>
           </View>
         )}
       </View>

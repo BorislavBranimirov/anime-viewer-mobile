@@ -4,10 +4,15 @@ import Colors from '../constants/Colors';
 import { IApiAnime } from '../utils/types';
 import { Link } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const AnimeItem = ({ anime }: { anime: IApiAnime }) => {
   return (
-    <View style={styles.cardWrapper}>
+    <LinearGradient
+      style={styles.cardWrapper}
+      colors={['rgba(9,9,11,0.2)', 'rgba(59,7,100,0.2)']}
+      locations={[0.8, 1]}
+    >
       <Link href={`/anime/${anime.mal_id}`} style={styles.card}>
         <View style={styles.cardCover}>
           <Image
@@ -32,7 +37,7 @@ const AnimeItem = ({ anime }: { anime: IApiAnime }) => {
           <InterText>#{anime.rank}</InterText>
         </View>
       </Link>
-    </View>
+    </LinearGradient>
   );
 };
 
