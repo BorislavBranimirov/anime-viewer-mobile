@@ -1,11 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import InterText from './StyledText';
 
 const PageTitle = ({ label }: { label: string }) => {
-  return <InterText style={styles.title}>{label}</InterText>;
+  return (
+    <View style={styles.titleWrapper}>
+      <InterText style={styles.title}>{label}</InterText>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
+  titleWrapper: {
+    paddingHorizontal: '10%',
+  },
   title: {
     fontSize: 24,
     lineHeight: 32,

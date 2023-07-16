@@ -4,7 +4,6 @@ import Button from './Button';
 import { useRouter } from 'expo-router';
 import InterText from './StyledText';
 import AnimeItem from './AnimeItem';
-import Colors from '../constants/Colors';
 
 const Viewer = ({ data }: { data: IApiResponse }) => {
   const router = useRouter();
@@ -14,6 +13,7 @@ const Viewer = ({ data }: { data: IApiResponse }) => {
   return (
     <>
       <FlatList
+        style={styles.wrapper}
         data={animeList}
         renderItem={({ item }) => <AnimeItem anime={item} />}
         keyExtractor={(item) => item.mal_id.toString()}
@@ -22,32 +22,38 @@ const Viewer = ({ data }: { data: IApiResponse }) => {
             No entries found&#8230;
           </InterText>
         )}
+        ListFooterComponent={() => (
+          <View style={styles.navigationWrapper}>
+            <Button
+              label="Previous"
+              disabled={!(current_page > 1)}
+              onPress={() => {
+                if (current_page > 1) {
+                  router.setParams({ page: (current_page - 1).toString() });
+                }
+              }}
+            />
+            <Button
+              label="Next"
+              disabled={!has_next_page}
+              onPress={() => {
+                if (has_next_page) {
+                  router.setParams({ page: (current_page + 1).toString() });
+                }
+              }}
+            />
+          </View>
+        )}
       />
-      <View style={styles.navigationWrapper}>
-        <Button
-          label="Previous"
-          disabled={!(current_page > 1)}
-          onPress={() => {
-            if (current_page > 1) {
-              router.setParams({ page: (current_page - 1).toString() });
-            }
-          }}
-        />
-        <Button
-          label="Next"
-          disabled={!has_next_page}
-          onPress={() => {
-            if (has_next_page) {
-              router.setParams({ page: (current_page + 1).toString() });
-            }
-          }}
-        />
-      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    paddingHorizontal: '10%',
+  },
   notFoundText: {
     marginBottom: 20,
     fontSize: 18,

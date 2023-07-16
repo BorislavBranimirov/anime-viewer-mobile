@@ -6,15 +6,17 @@ import {
 } from '@expo-google-fonts/inter';
 import { ErrorBoundaryProps, SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import ErrorBoundaryComponent from '../components/ErrorBoundary';
 import Colors from '../constants/Colors';
 
 // Catch global errors
 export const ErrorBoundary = (props: ErrorBoundaryProps) => {
   return (
-    <SafeAreaProvider>
-      <ErrorBoundaryComponent {...props} />
+    <SafeAreaProvider style={{ backgroundColor: Colors.background }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background }}>
+        <ErrorBoundaryComponent {...props} />
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 };
@@ -45,7 +47,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <>
-      <SafeAreaProvider>
+      <SafeAreaProvider style={{ backgroundColor: Colors.background }}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen

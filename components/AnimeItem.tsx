@@ -1,43 +1,49 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import InterText from './StyledText';
 import Colors from '../constants/Colors';
 import { IApiAnime } from '../utils/types';
 import { Link } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { memo } from 'react';
 
 const AnimeItem = ({ anime }: { anime: IApiAnime }) => {
   return (
-    <LinearGradient
-      style={styles.cardWrapper}
-      colors={['rgba(9,9,11,0.2)', 'rgba(59,7,100,0.2)']}
-      locations={[0.8, 1]}
-    >
-      <Link href={`/anime/${anime.mal_id}`} style={styles.card}>
-        <View style={styles.cardCover}>
-          <Image
-            source={{ uri: anime.images.jpg.large_image_url }}
-            alt="Anime image"
-            style={styles.cardImage}
-          />
-          {anime.airing && (
-            <View style={styles.cardAiringStatus}>
-              <InterText>Airing</InterText>
+    <Link href={`/anime/${anime.mal_id}`} style={styles.cardWrapper} asChild>
+      <Pressable>
+        <LinearGradient
+          colors={['rgba(9,9,11,0.2)', 'rgba(59,7,100,0.2)']}
+          locations={[0.8, 1]}
+        >
+          <View style={styles.card}>
+            <View style={styles.cardCover}>
+              <Image
+                source={{ uri: anime.images.jpg.large_image_url }}
+                alt="Anime image"
+                style={styles.cardImage}
+              />
+              {anime.airing && (
+                <View style={styles.cardAiringStatus}>
+                  <InterText>Airing</InterText>
+                </View>
+              )}
             </View>
-          )}
-        </View>
-        <View style={styles.cardBody}>
-          <InterText style={styles.cardTitle}>{anime.title}</InterText>
-          <View style={styles.cardScore}>
-            <AntDesign name="star" size={14} color="orange" />
-            <InterText>{anime.score}</InterText>
+            <View style={styles.cardBody}>
+              <InterText style={styles.cardTitle}>{anime.title}</InterText>
+              <View style={styles.cardScore}>
+                <AntDesign name="star" size={14} color="orange" />
+                <InterText>{anime.score}</InterText>
+              </View>
+            </View>
           </View>
-        </View>
-        <View style={styles.cardBadge}>
-          <InterText>#{anime.rank}</InterText>
-        </View>
-      </Link>
-    </LinearGradient>
+          <View style={styles.cardBadgeWrapper}>
+            <View style={styles.cardBadge}>
+              <InterText>#{anime.rank}</InterText>
+            </View>
+          </View>
+        </LinearGradient>
+      </Pressable>
+    </Link>
   );
 };
 
@@ -91,20 +97,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
   },
-  cardBadge: {
-    width: '50%',
-    marginHorizontal: 'auto',
+  cardBadgeWrapper: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 8,
+    justifyContent: 'center',
     alignItems: 'center',
+  },
+  cardBadge: {
+    width: '50%',
+    padding: 8,
     backgroundColor: Colors.accent,
+    alignItems: 'center',
     borderRadius: 9999,
     transform: [{ translateY: 20 }],
     boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)',
   },
 });
 
-export default AnimeItem;
+export default memo(AnimeItem);

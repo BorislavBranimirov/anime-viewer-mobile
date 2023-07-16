@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 const InterText = (props: TextProps) => {
   // Properly switch between Inter regular and Inter bold, since React Native
   // does not do that automatically (no font-face rule)
-  const fontWeight = StyleSheet.flatten(props.style).fontWeight;
+  const fontWeight = StyleSheet.flatten(props.style)?.fontWeight;
   const isBold = fontWeight === 'bold' || fontWeight === '700';
 
   return (

@@ -1,6 +1,4 @@
 import { StyleSheet, TextInput, View } from 'react-native';
-
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import Colors from '../../constants/Colors';
 import { useFetchSearchAnime } from '../../utils/hooks';
@@ -20,24 +18,22 @@ export default function SearchAnime() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.wrapper}>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search&#8230;"
-            onChangeText={(newText) => {
-              setQuery(newText);
-            }}
-            onSubmitEditing={onSubmit}
-            value={query}
-            placeholderTextColor="darkgray"
-          />
-          <Button label="Search" onPress={onSubmit} />
-        </View>
-        {!data || loading ? <Spinner /> : <Viewer data={data} />}
+    <View style={styles.container}>
+      <View style={styles.inputWrapper}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search&#8230;"
+          onChangeText={(newText) => {
+            setQuery(newText);
+          }}
+          onSubmitEditing={onSubmit}
+          value={query}
+          placeholderTextColor="darkgray"
+        />
+        <Button label="Search" onPress={onSubmit} />
       </View>
-    </SafeAreaView>
+      {!data || loading ? <Spinner /> : <Viewer data={data} />}
+    </View>
   );
 }
 
@@ -45,22 +41,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-    overflow: 'scroll',
-  },
-  wrapper: {
-    width: '80%',
-    minHeight: '100%',
-    marginHorizontal: 'auto',
   },
   inputWrapper: {
-    flexDirection: 'row',
+    paddingHorizontal: '10%',
     marginVertical: 20,
-    width: '100%',
+    flexDirection: 'row',
     gap: 12,
   },
   searchInput: {
     paddingHorizontal: 12,
     paddingVertical: 8,
+    flexGrow: 1,
+    flexShrink: 1,
     backgroundColor: 'rgb(39,39,42)',
     borderWidth: 1,
     borderRadius: 8,

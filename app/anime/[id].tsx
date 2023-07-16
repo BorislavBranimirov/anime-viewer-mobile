@@ -1,5 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
@@ -16,11 +15,11 @@ const AnimePage = () => {
   const { data: anime, loading } = useFetchAnime(id);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.wrapper}>
-        {!anime || loading ? (
-          <Spinner />
-        ) : (
+    <View style={styles.container}>
+      {!anime || loading ? (
+        <Spinner />
+      ) : (
+        <ScrollView style={styles.wrapper}>
           <View style={styles.animeWrapper}>
             <View style={styles.animeCover}>
               <Image
@@ -85,25 +84,24 @@ const AnimePage = () => {
               </View>
             </LinearGradient>
           </View>
-        )}
-      </View>
-    </SafeAreaView>
+        </ScrollView>
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: '100%',
+    flex: 1,
     backgroundColor: Colors.background,
   },
   wrapper: {
-    width: '80%',
-    minHeight: '100%',
-    marginHorizontal: 'auto',
+    flex: 1,
+    paddingHorizontal: '5%',
   },
   animeWrapper: {
     width: '100%',
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 40,
     borderRadius: 8,
     overflow: 'hidden',
