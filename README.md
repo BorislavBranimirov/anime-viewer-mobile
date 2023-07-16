@@ -1,6 +1,8 @@
 # Anime Viewer Mobile
 
-A simple project for viewing anime listings using the [Jikan API](https://jikan.moe/). This is the mobile React Native version of my web [anime viewer project](https://github.com/BorislavBranimirov/anime-viewer).
+A simple project for viewing anime listings using the [Jikan API](https://jikan.moe/).
+
+This is the mobile React Native version of my web [anime viewer project](https://github.com/BorislavBranimirov/anime-viewer).
 
 ## Getting Started
 
